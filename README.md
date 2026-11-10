@@ -3,10 +3,10 @@
 A phone app for live poker that keeps a read on every player at your table and shows you how to exploit them.
 
 <p>
-  <img src="screenshots/table-read.webp" width="200" alt="The table in Simple Mode, with a plain line on how to play each seated player">
-  <img src="screenshots/howto.webp" width="200" alt="How to Exploit Them for one player, split into Go after them and Hold back">
-  <img src="screenshots/saved.webp" width="200" alt="Saved Players, a list of players with their type icons">
-  <img src="screenshots/glossary.webp" width="200" alt="The Glossary, with every player type and term">
+  <img src="screenshots/table-read.webp" width="165" alt="The table in Simple Mode, with a plain line on how to play each seated player">
+  <img src="screenshots/howto.webp" width="165" alt="How to Exploit Them for one player, split into Go after them and Hold back">
+  <img src="screenshots/saved.webp" width="165" alt="Saved Players, a list of players with their type icons">
+  <img src="screenshots/glossary.webp" width="165" alt="The Glossary, with every player type and term">
 </p>
 
 ## Why I Built It
