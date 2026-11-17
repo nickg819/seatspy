@@ -17,7 +17,7 @@ SeatSpy ties every read to a plan. You spot the type, then go after the mistakes
 
 ## How a Session Works
 
-Tap a seat to add someone from your book or a stranger. Tag each player with a type, like Calling Station, NIT or Maniac, or let Quiz Me ask what you’ve seen and rank the likely types. Each player’s panel then says when to bluff them, when to bet for value and when to back off.
+Tap a seat to add someone from your book, a stranger or one of tonight’s players waiting in the tray. Tag each player with a type, like Calling Station, NIT or Maniac, or let Quiz Me ask what you’ve seen and rank the likely types. Each player’s panel then says when to bluff them, when to bet for value and when to back off.
 
 Reads stay with the player. The next time they sit down, you start where the last session left off.
 
@@ -28,10 +28,13 @@ Reads stay with the player. The next time they sit down, you start where the las
 - Log What They Did records a play or a tell and the type it points to.
 - Incognito Mode shows tagged seats as dots, so nobody next to you can read your screen.
 - Learn has a poker glossary, a card for every type and quizzes on both.
+- Equity Calculators work out showdown equity in Hold’em and Pot-Limit Omaha, double-board bomb pots included. Give up to nine players a hand or a range, paint ranges on a 13 by 13 grid and save the ones you use.
+- What Is Equity? covers equity, outs and the price of a call in six short pages, and ends on a spot to guess.
+- The ICM Calculator works out a deal at the end of a tournament, by ICM or by chip EV.
 
 ## Built With
 
-SeatSpy is built with Expo and React Native, in TypeScript. Expo Router handles navigation, expo-sqlite keeps the book on the phone, and Reanimated and Gesture Handler run the table’s drag and press gestures. EAS Build makes the iPhone and Android builds, and EAS Update ships fixes over the air.
+SeatSpy is built with Expo and React Native, in TypeScript. Expo Router handles navigation, expo-sqlite keeps the book on the phone, and Reanimated and Gesture Handler run the table’s drag and press gestures. The equity calculators run on the phone too. They work a hand out exactly when the phone can finish in about three seconds, and run Monte Carlo deals when it can’t. EAS Build makes the iPhone and Android builds, and EAS Update ships fixes over the air.
 
 ## Get the App
 
