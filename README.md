@@ -3,10 +3,10 @@
 A phone app for live poker that keeps a read on every player at your table and shows you how to exploit them.
 
 <p>
-  <img src="screenshots/table-read.webp" width="165" alt="The table in Simple Mode, with a plain line on how to play each seated player">
-  <img src="screenshots/howto.webp" width="165" alt="How to Exploit Them for one player, split into Go after them and Hold back">
-  <img src="screenshots/saved.webp" width="165" alt="Saved Players, a list of players with their type icons">
-  <img src="screenshots/glossary.webp" width="165" alt="The Glossary, with every player type and term">
+  <img src="docs/screens/table-read.webp" width="165" alt="The table in Simple Mode, with a plain line on how to play each seated player">
+  <img src="docs/screens/howto.webp" width="165" alt="How to Exploit Them for one player, split into Go after them and Hold back">
+  <img src="docs/screens/saved.webp" width="165" alt="Saved Players, a list of players with their type icons">
+  <img src="docs/screens/glossary.webp" width="165" alt="The Glossary, with every player type and term">
 </p>
 
 ## Why I Built It
@@ -35,11 +35,11 @@ SeatSpy is built with Expo and React Native, in TypeScript. Expo Router handles 
 
 ## Get the App
 
-Request beta access at [colossalhippo.com/seatspy](https://colossalhippo.com/seatspy/). iPhone testers get a TestFlight invite at the email on their Apple ID. On Android, install it from [colossalhippo.com/seatspy/android](https://colossalhippo.com/seatspy/android/).
+Request beta access at [seatspy.app](https://seatspy.app/). iPhone testers get a TestFlight invite at the email on their Apple ID. On Android, install it from [seatspy.app/android](https://seatspy.app/android/).
 
 ## About This Repo
 
-This repo is the project page. The source code is private, and I’m not taking contributions. If something breaks, use Report a Bug in the app’s Settings.
+This repo is the project page, and the `docs` folder is the site at [seatspy.app](https://seatspy.app/), with the Privacy Policy and Terms of Use. The source code is private, and I’m not taking contributions. If something breaks, use Report a Bug in the app’s Settings.
 
 ## License
 
