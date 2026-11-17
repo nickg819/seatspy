@@ -13,7 +13,7 @@
   <meta name="twitter:card" content="summary_large_image">
   <link rel="icon" href="favicon.png">
   <link rel="apple-touch-icon" href="icon.png">
-  <link rel="stylesheet" href="home.css?v=12">
+  <link rel="stylesheet" href="home.css?v=13">
   <script>document.documentElement.classList.add('js');</script>
 </head>
 <body>
@@ -149,19 +149,51 @@
   </article>
 </section>
 
-<section class="train">
-  <div class="train-text">
-    <h2 class="t-reveal">Learn from the comfort of your home</h2>
-    <p class="t-reveal">Everything for studying sits under <b>Learn</b> on the home screen.</p>
-    <p class="t-reveal">The advice is only useful if you know what a float or a 3-bet is. The Glossary covers more than 90 poker terms, and the terms in the advice have a dotted line under them. Tap one to see what it means.</p>
-    <p class="t-reveal"><b>Meet the Player Types</b> is a card for every type, with plain words under the short names, to read before a game.</p>
-    <p class="t-reveal">The <b>Terms</b> quiz deals ten cards a round. Each answer turns the card over, green when you are right and red when you miss. The questions change as you go: pick the meaning, name the term, true or false, fill the blank from a real line of advice, or type the term yourself.</p>
-    <p class="t-reveal">The <b>Player Types</b> quiz also deals ten cards, each a player, a hand or a tell, and you name the type. The card turns over to show what gave it away, and the types you miss come back first.</p>
-    <p class="t-reveal"><b>Quiz Progress</b> keeps count of the terms you know, shows which groups you are weakest in and runs a round on just the terms you keep missing.</p>
-    <p class="t-reveal"><b>Equity Calculators</b> work out each player’s showdown equity in Hold’em and Pot-Limit Omaha, double-board bomb pots included. Give up to nine players a hand or a range, paint a range on the 13 by 13 grid, and save the ones you use. New to equity? <b>What Is Equity?</b> covers outs and the price of a call in six short pages, then hands you a spot to guess.</p>
-    <p class="t-reveal">The <b>ICM Calculator</b> works out a deal at the end of a tournament. Type the payouts and each player’s chips, and it shows what each player gets by ICM or by chip EV.</p>
+<section class="learn" aria-labelledby="learn-title">
+  <h2 class="learn-head t-reveal" id="learn-title">Learn from the comfort of your home</h2>
+  <div class="learn-track" role="region" aria-roledescription="carousel" aria-label="What is under Learn" tabindex="0">
+    <div class="learn-slide" role="group" aria-roledescription="slide" aria-label="1 of 8" data-name="Learn">
+      <div class="phone learn-shot"><img src="screens/learn-home.webp" alt="Learn, with the Glossary, Meet the Player Types, both quizzes, Quiz Progress and the two calculators" width="720" height="1561" loading="lazy"></div>
+      <p>Everything for studying sits under <b>Learn</b> on the home screen.</p>
+    </div>
+    <div class="learn-slide" role="group" aria-roledescription="slide" aria-label="2 of 8" data-name="Glossary">
+      <div class="phone learn-shot"><img src="screens/learn-glossary.webp" alt="The Glossary, with every player type and term" width="720" height="1561" loading="lazy"></div>
+      <p>The advice is only useful if you know what a float or a 3-bet is. The <b>Glossary</b> covers more than 90 poker terms, and the terms in the advice have a dotted line under them. Tap one to see what it means.</p>
+    </div>
+    <div class="learn-slide" role="group" aria-roledescription="slide" aria-label="3 of 8" data-name="Meet the Player Types">
+      <div class="phone learn-shot"><img src="screens/learn-meet-types.webp" alt="The Calling Station card in Meet the Player Types, with what you see, their usual stats and how to exploit them" width="720" height="1565" loading="lazy"></div>
+      <p><b>Meet the Player Types</b> is a card for every type, with plain words under the short names, to read before a game.</p>
+    </div>
+    <div class="learn-slide" role="group" aria-roledescription="slide" aria-label="4 of 8" data-name="Terms Quiz">
+      <div class="phone learn-shot"><img src="screens/learn-terms-quiz.webp" alt="A Terms quiz card turned over to show a right answer" width="720" height="1561" loading="lazy"></div>
+      <p>The <b>Terms</b> quiz deals ten cards a round. Each answer turns the card over, green when you are right and red when you miss. The questions change as you go: pick the meaning, name the term, true or false, fill the blank from a real line of advice, or type the term yourself.</p>
+    </div>
+    <div class="learn-slide" role="group" aria-roledescription="slide" aria-label="5 of 8" data-name="Player Types Quiz">
+      <div class="phone learn-shot"><img src="screens/learn-types-quiz.webp" alt="A Player Types quiz card turned over, right, LAG, with what gave it away" width="720" height="1561" loading="lazy"></div>
+      <p>The <b>Player Types</b> quiz also deals ten cards, each a player, a hand or a tell, and you name the type. The card turns over to show what gave it away, and the types you miss come back first.</p>
+    </div>
+    <div class="learn-slide" role="group" aria-roledescription="slide" aria-label="6 of 8" data-name="Quiz Progress">
+      <div class="phone learn-shot"><img src="screens/learn-quiz-progress.webp" alt="Quiz Progress, with 47 of 98 terms known and how far along each group is" width="720" height="1561" loading="lazy"></div>
+      <p><b>Quiz Progress</b> keeps count of the terms you know, shows which groups you are weakest in and runs a round on just the terms you keep missing.</p>
+    </div>
+    <div class="learn-slide" role="group" aria-roledescription="slide" aria-label="7 of 8" data-name="Equity Calculators">
+      <div class="phone learn-shot"><img src="screens/learn-equity.webp" alt="The Hold’em calculator with ace-king of spades against tens or better, ace-queen suited or better and ace-king offsuit, at 45.7% to 54.3%" width="720" height="1561" loading="lazy"></div>
+      <p><b>Equity Calculators</b> work out each player’s showdown equity in Hold’em and Pot-Limit Omaha, double-board bomb pots included. Give up to nine players a hand or a range, paint a range on the 13 by 13 grid, and save the ones you use. New to equity? <b>What Is Equity?</b> covers outs and the price of a call in six short pages, then hands you a spot to guess.</p>
+    </div>
+    <div class="learn-slide" role="group" aria-roledescription="slide" aria-label="8 of 8" data-name="ICM Calculator">
+      <div class="phone learn-shot"><img src="screens/learn-icm.webp" alt="The ICM Calculator splitting $10,000 among three stacks, $3,949, $3,432 and $2,619" width="720" height="1561" loading="lazy"></div>
+      <p>The <b>ICM Calculator</b> works out a deal at the end of a tournament. Type the payouts and each player’s chips, and it shows what each player gets by ICM or by chip EV.</p>
+    </div>
   </div>
-  <figure class="train-phone t-reveal"><div class="phone"><img src="screens/quiz-right.webp" alt="A quiz card turned over to show a right answer, River, the fifth and last shared card" width="720" height="1565" loading="lazy"></div></figure>
+  <div class="learn-aside">
+    <figure class="learn-stage" aria-hidden="true"><div class="phone"><div class="learn-screen"></div></div></figure>
+    <div class="learn-nav">
+      <button type="button" class="learn-step" data-direction="previous" aria-label="Previous screen"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M10 3.5L5.5 8l4.5 4.5"/></svg></button>
+      <div class="learn-dots" role="group" aria-label="Choose a screen"></div>
+      <button type="button" class="learn-step" data-direction="next" aria-label="Next screen"><svg viewBox="0 0 16 16" width="16" height="16" fill="none" stroke="currentColor" stroke-width="1.8" stroke-linecap="round" stroke-linejoin="round" aria-hidden="true"><path d="M6 3.5L10.5 8 6 12.5"/></svg></button>
+    </div>
+  </div>
+  <p class="sr learn-status" role="status" aria-live="polite"></p>
 </section>
 
 <section class="room">
@@ -210,6 +242,6 @@
   <a href="terms/">Terms of Use</a>
 </footer>
 
-<script src="home.js?v=6"></script>
+<script src="home.js?v=7"></script>
 </body>
 </html>

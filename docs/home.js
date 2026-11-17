@@ -348,3 +348,119 @@ rowEl.querySelectorAll('.deal').forEach((fig) => {
 });
 rowEl.querySelector('.deal-main').setAttribute('aria-pressed', 'true');
 rowEl.querySelectorAll('.deal:not(.deal-main)').forEach((f) => f.setAttribute('aria-pressed', 'false'));
+
+// learn: on a wide screen the stage deals each line's screen as the line crosses the middle of
+// the window; on a phone the screens swipe, with dots and buttons under them
+{
+  const learn = document.querySelector('.learn');
+  const track = learn.querySelector('.learn-track');
+  const slides = [...track.querySelectorAll('.learn-slide')];
+  const screen = learn.querySelector('.learn-screen');
+  const dots = learn.querySelector('.learn-dots');
+  const prev = learn.querySelector('[data-direction="previous"]');
+  const next = learn.querySelector('[data-direction="next"]');
+  const status = learn.querySelector('.learn-status');
+  const wide = matchMedia('(min-width: 761px)');
+  const motion = () => (reduce.matches ? 'auto' : 'smooth');
+
+  // the stage's copies are decorative; each line keeps its own image and alt text
+  const shots = slides.map((slide, i) => {
+    const img = document.createElement('img');
+    img.src = slide.querySelector('img').getAttribute('src');
+    img.alt = '';
+    img.decoding = 'async';
+    if (i) img.loading = 'lazy';
+    screen.append(img);
+    return img;
+  });
+  const marks = slides.map((slide, i) => {
+    const dot = document.createElement('button');
+    dot.type = 'button';
+    dot.className = 'learn-dot';
+    dot.setAttribute('aria-label', `Show ${slide.dataset.name}`);
+    dot.addEventListener('click', () => goTo(i));
+    dots.append(dot);
+    return dot;
+  });
+
+  let current = -1;
+  let settled = 0;
+  let pending = null; // the screen a click is scrolling to, so scroll tracking waits until it lands
+
+  const showScreen = (i) => {
+    if (i === current) return;
+    current = i;
+    slides.forEach((s, k) => s.classList.toggle('is-on', k === i));
+    marks.forEach((m, k) => m.setAttribute('aria-current', String(k === i)));
+    shots.forEach((img, k) => {
+      img.classList.toggle('is-on', k === i);
+      img.classList.toggle('is-past', k < i);
+    });
+    const focused = document.activeElement;
+    prev.disabled = i === 0;
+    next.disabled = i === slides.length - 1;
+    if (focused === prev && prev.disabled) next.focus();
+    if (focused === next && next.disabled) prev.focus();
+  };
+
+  // how far a slide sits from the middle of the row, or of the window on a wide screen
+  const fromMiddle = (slide) => {
+    const r = slide.getBoundingClientRect();
+    if (wide.matches) return r.top + r.height / 2 - innerHeight / 2;
+    const t = track.getBoundingClientRect();
+    return r.left + r.width / 2 - (t.left + t.width / 2);
+  };
+  const nearest = () => {
+    const gaps = slides.map((s) => Math.abs(fromMiddle(s)));
+    return gaps.indexOf(Math.min(...gaps));
+  };
+
+  const goTo = (i) => {
+    i = Math.max(0, Math.min(slides.length - 1, i));
+    const d = fromMiddle(slides[i]);
+    showScreen(i);
+    if (Math.abs(d) < 2) return;
+    pending = i;
+    if (wide.matches) scrollBy({ top: d, behavior: motion() });
+    else track.scrollBy({ left: d, behavior: motion() });
+  };
+  prev.addEventListener('click', () => goTo(current - 1));
+  next.addEventListener('click', () => goTo(current + 1));
+  slides.forEach((slide, i) => slide.addEventListener('click', () => { if (wide.matches) goTo(i); }));
+
+  // wide: the line crossing the middle of the window takes the stage
+  const middle = new IntersectionObserver((entries) => {
+    if (!wide.matches || pending !== null) return;
+    for (const e of entries) if (e.isIntersecting) showScreen(slides.indexOf(e.target));
+  }, { rootMargin: '-50% 0px -50% 0px' });
+  slides.forEach((s) => middle.observe(s));
+
+  // phone: the dots follow the swipe each frame, and the new screen is announced once it settles
+  let frame = 0;
+  track.addEventListener('scroll', () => {
+    if (wide.matches || pending !== null || frame) return;
+    frame = requestAnimationFrame(() => { frame = 0; showScreen(nearest()); });
+  }, { passive: true });
+  const onScrollEnd = (target, done) => {
+    if ('onscrollend' in window) { target.addEventListener('scrollend', done); return; }
+    let t = 0;
+    target.addEventListener('scroll', () => { clearTimeout(t); t = setTimeout(done, 120); }, { passive: true });
+  };
+  onScrollEnd(track, () => {
+    if (wide.matches) return;
+    pending = null;
+    const i = nearest();
+    showScreen(i);
+    if (i !== settled) {
+      settled = i;
+      status.textContent = `Screen ${i + 1} of ${slides.length}, ${slides[i].dataset.name}`;
+    }
+  });
+  onScrollEnd(window, () => { if (wide.matches) pending = null; });
+  wide.addEventListener('change', () => {
+    pending = null;
+    if (!wide.matches && current > 0) track.scrollBy({ left: fromMiddle(slides[current]) });
+  });
+
+  showScreen(0);
+}

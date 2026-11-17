@@ -264,7 +264,7 @@ img { display: block; max-width: 100%; height: auto; }
 .t-tilt.is-hover .t-tilt-glare { opacity: var(--tilt-glare-opacity); }
 
 /* section headings */
-.how h2, .advice h2, .train h2, .room h2, .closing h2 {
+.how h2, .advice h2, .learn h2, .room h2, .closing h2 {
   color: var(--navy);
   font-size: clamp(32px, 4.5vw, 48px); line-height: 1.05;
   font-weight: 700; letter-spacing: -0.03em;
@@ -322,13 +322,73 @@ img { display: block; max-width: 100%; height: auto; }
 .go .mark { stroke: var(--go-mark); }
 .stop .mark { stroke: var(--stop-mark); }
 
-/* training */
-.train {
+/* learn: on a wide screen, a phone that deals each screen as its line scrolls past, over a
+   deck of the screens still to come; on a phone, a swipeable row of screens */
+.learn {
   max-width: 1080px; margin: 0 auto; padding: 0 24px 104px;
-  display: grid; grid-template-columns: 1fr minmax(0, 300px); gap: 64px; align-items: center;
+  display: grid; grid-template-columns: 1fr minmax(0, 300px); column-gap: 72px;
 }
-.train-text p { margin-top: 16px; color: var(--muted); font-size: 18px; line-height: 28px; }
-.train-phone { margin: 0; }
+.learn-head { grid-column: 1; margin-bottom: 12px; }
+.learn-track { grid-column: 1; outline-offset: 8px; border-radius: 8px; }
+.learn-slide { position: relative; padding: 36px 0 36px 32px; border-left: 2px solid var(--line); }
+.learn-slide p { color: var(--muted); font-size: 18px; line-height: 28px; transition: color 300ms ease; }
+.learn-slide p b { color: var(--navy); }
+.learn-shot { width: 260px; margin-bottom: 20px; }
+.js .learn-slide { cursor: pointer; }
+.js .learn-slide::before {
+  content: ""; position: absolute; left: -3px; top: 32px; bottom: 32px; width: 4px;
+  border-radius: 2px; background: var(--blue);
+  transform: scaleY(0); transition: transform 400ms var(--ease-smooth-out);
+}
+.js .learn-slide.is-on::before { transform: scaleY(1); }
+.js .learn-slide.is-on p { color: var(--text); }
+/* the stage shows the screens on a wide screen, so each line's own copy is kept for screen readers */
+@media (min-width: 761px) {
+  .js .learn-shot { position: absolute; width: 1px; height: 1px; margin: 0; padding: 0; border: 0; overflow: hidden; clip-path: inset(50%); }
+}
+.learn-aside {
+  grid-column: 2; grid-row: 1 / span 2; align-self: start;
+  position: sticky; top: max(24px, calc(50vh - 380px));
+  padding-top: 48px;
+}
+.learn-stage { display: none; position: relative; margin: 0 auto; width: min(300px, calc((100vh - 170px) * 0.46)); }
+.js .learn-stage { display: block; }
+.learn-stage::before, .learn-stage::after {
+  content: ""; position: absolute; inset: 0;
+  border: 1px solid #d9d3cb; border-radius: 34px; background: #fff;
+}
+.learn-stage::before { transform: translate(18px, 10px) rotate(4deg); opacity: 0.5; }
+.learn-stage::after { transform: translate(9px, 5px) rotate(2deg); opacity: 0.8; }
+.learn-stage .phone { position: relative; z-index: 1; }
+.learn-screen { position: relative; aspect-ratio: 720 / 1561; border-radius: 28px; overflow: hidden; background: var(--bg); }
+.learn-screen img {
+  position: absolute; inset: 0; width: 100%; height: 100%; object-fit: cover; object-position: top;
+  opacity: 0; transform: translateY(14%) rotate(3deg) scale(0.94);
+  transition: opacity 360ms ease, transform 560ms var(--ease-smooth-out);
+}
+.learn-screen img.is-past { transform: translateY(-10%) rotate(-3deg) scale(0.94); }
+.learn-screen img.is-on { opacity: 1; transform: none; }
+.learn-nav { display: none; align-items: center; justify-content: center; gap: 8px; margin-top: 28px; }
+.js .learn-nav { display: flex; }
+.learn-step {
+  display: grid; place-items: center; width: 40px; height: 40px; flex: none;
+  border: 1px solid var(--line); border-radius: 50%; background: #fff; color: var(--navy);
+  cursor: pointer; touch-action: manipulation;
+}
+.learn-step:hover:not(:disabled) { border-color: var(--blue); }
+.learn-step:disabled { color: #9aa3ad; cursor: default; }
+.learn-dots { display: flex; align-items: center; }
+.learn-dot {
+  display: grid; place-items: center; width: 24px; height: 24px; padding: 0;
+  border: 0; background: none; cursor: pointer; touch-action: manipulation;
+}
+.learn-dot::after {
+  content: ""; width: 8px; height: 8px; border-radius: 4px; background: #c3ccd8;
+  transition: width 300ms var(--ease-smooth-out), background-color 300ms ease;
+}
+.learn-dot[aria-current="true"]::after { width: 20px; background: var(--blue); }
+.learn-step:focus-visible, .learn-dot:focus-visible { outline: 2px solid var(--blue); outline-offset: 2px; }
+.learn-dot:focus-visible { border-radius: 12px; }
 
 /* card room */
 .room {
@@ -459,8 +519,24 @@ img { display: block; max-width: 100%; height: auto; }
   .how, .advice { padding: 0 16px 72px; }
   .advice { grid-template-columns: 1fr; gap: 28px; }
   .verdicts { padding: 20px; }
-  .train { padding: 0 16px 72px; grid-template-columns: 1fr; gap: 28px; }
-  .train-phone { max-width: 280px; margin: 0 auto; }
+  .learn { padding: 0 0 72px; grid-template-columns: 1fr; }
+  .learn-head { padding: 0 16px; margin-bottom: 20px; }
+  .js .learn-track {
+    display: flex; gap: 16px; padding: 4px 12% 8px;
+    overflow-x: auto; scroll-snap-type: x mandatory; overscroll-behavior-x: contain;
+    scrollbar-width: none; touch-action: manipulation;
+  }
+  .js .learn-track::-webkit-scrollbar { display: none; }
+  .learn-slide { padding: 0 16px 36px; border: 0; }
+  .js .learn-slide { flex: 0 0 76%; padding: 0; scroll-snap-align: center; cursor: auto; }
+  .js .learn-slide::before { content: none; }
+  .learn-slide p { font-size: 16px; line-height: 24px; }
+  .learn-shot { width: auto; max-width: 220px; margin: 0 auto 18px; }
+  .js .learn-shot { transition: transform 400ms var(--ease-smooth-out); }
+  .js .learn-slide:not(.is-on) .learn-shot { transform: scale(0.94); }
+  .learn-aside { grid-column: 1; grid-row: auto; position: static; padding-top: 4px; }
+  .js .learn-stage { display: none; }
+  .learn-nav { margin-top: 12px; }
   .room { margin: 0 16px 72px; padding: 32px 20px; grid-template-columns: 1fr; gap: 28px; }
   .closing { padding: 16px 16px 88px; }
   .foot { padding: 24px 16px; }
@@ -468,6 +544,8 @@ img { display: block; max-width: 100%; height: auto; }
 
 @media (prefers-reduced-motion: reduce) {
   html { scroll-behavior: auto; }
+  .learn-screen img, .learn-screen img.is-past { transform: none; transition: opacity 200ms ease; }
+  .js .learn-slide::before, .js .learn-shot { transition: none; }
   .js .deal { animation: none; }
   .js .t-stagger-line, .js .t-reveal { transform: none; filter: none; transition: opacity 300ms ease; }
   .js .step::after { transform: none; transition: none; }
