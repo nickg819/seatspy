@@ -170,7 +170,12 @@ img { display: block; max-width: 100%; height: auto; }
 }
 .lede { margin-top: 24px; color: var(--muted); font-size: 19px; line-height: 28px; text-wrap: pretty; }
 .actions { display: flex; flex-wrap: wrap; justify-content: center; gap: 12px; margin-top: 12px; }
-.note { margin-top: 16px; color: var(--muted); font-size: 14px; }
+.note {
+  max-width: 520px; margin: 16px auto 0; padding: 12px 18px;
+  background: var(--go-tint); border-radius: 16px;
+  color: var(--text); font-size: 16px; line-height: 22px; text-wrap: pretty;
+}
+.note strong { color: var(--go); font-weight: 700; }
 
 /* hero text reveal, and the same rise for content as it scrolls in */
 .t-stagger-line { display: block; }
